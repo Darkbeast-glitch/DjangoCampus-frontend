@@ -9,18 +9,18 @@ export default function Home() {
       {/* Header */}
       <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-            <img src="/Campus_crop.png" alt="DjangoCampus Logo" className="h-10 w-20" />
+          <div className="flex items-center gap-3">
+            <img src="/pycon-tanzania-logo.png" alt="PyCon Tanzania Logo" className="h-12 w-12" />
             <div>
-              <h1 className="font-serif font-black text-xl text-foreground">DjangoCampus</h1>
-              <p className="text-sm text-muted-foreground">Powered by Django</p>
+              <h1 className="font-serif font-black text-xl text-foreground">Django Girls Tanzania</h1>
+              <p className="text-sm text-muted-foreground">Powered by PyCon Tanzania</p>
             </div>
-            </div>
+          </div>
           <nav className="hidden md:flex items-center gap-6">
             <a href="#about" className="text-foreground hover:text-primary transition-colors">
               About
             </a>
-            <a href="#workshops" className="text-foreground hover:text-primary transition-colors">
+            <a href="/workshops" className="text-foreground hover:text-primary transition-colors">
               Workshops
             </a>
             <a href="#community" className="text-foreground hover:text-primary transition-colors">
@@ -34,7 +34,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="py-20 px-4 bg-gradient-to-br from-card to-background">
         <div className="container mx-auto text-center max-w-4xl">
-          <Badge className="mb-6 bg-secondary text-secondary-foreground">Empowering Youth in Tech with Django</Badge>
+          <Badge className="mb-6 bg-secondary text-secondary-foreground">Empowering Women in Tech</Badge>
           <h1 className="font-serif font-black text-4xl md:text-6xl text-foreground mb-6 leading-tight">
             Learn Django.
             <br />
@@ -43,7 +43,7 @@ export default function Home() {
             Change the World.
           </h1>
           <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
-            Join DjangoCampus and discover the power of programming. Our free workshops welcome youth of all
+            Join Django Girls Tanzania and discover the power of programming. Our free workshops welcome women of all
             backgrounds to learn web development in a supportive, inclusive environment.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -63,9 +63,9 @@ export default function Home() {
       <section id="about" className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-12">
-            <h2 className="font-serif font-black text-3xl md:text-4xl text-foreground mb-4">What is DjangoCampus?</h2>
+            <h2 className="font-serif font-black text-3xl md:text-4xl text-foreground mb-4">What is Django Girls?</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              We're a global non-profit organization that empowers and helps youth on campus organize free programming workshops.
+              We're a global non-profit organization that empowers and helps women organize free programming workshops.
             </p>
           </div>
 
@@ -186,15 +186,15 @@ export default function Home() {
                 <div className="flex items-center gap-3">
                   <img src="/african-woman-developer-smiling.png" alt="Amina" className="h-12 w-12 rounded-full" />
                   <div>
-                    <CardTitle className="text-lg">Juliana Lawson</CardTitle>
+                    <CardTitle className="text-lg">Amina Hassan</CardTitle>
                     <CardDescription>Software Developer</CardDescription>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  "Django Campus gave me the confidence to pursue tech. Now I'm building apps that help local businesses
-                  in Ghana!"
+                  "Django Girls gave me the confidence to pursue tech. Now I'm building apps that help local businesses
+                  in Arusha!"
                 </p>
               </CardContent>
             </Card>
@@ -222,13 +222,13 @@ export default function Home() {
                   <img src="/african-woman-teacher-computer.png" alt="Fatuma" className="h-12 w-12 rounded-full" />
                   <div>
                     <CardTitle className="text-lg">Fatuma Ally</CardTitle>
-                    <CardDescription>Teacher & Django Campus Coach</CardDescription>
+                    <CardDescription>Teacher & Django Girls Coach</CardDescription>
                   </div>
                 </div>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground">
-                  "From attendee to coach - Django Campus taught me to code and now I'm teaching others!"
+                  "From attendee to coach - Django Girls taught me to code and now I'm teaching others!"
                 </p>
               </CardContent>
             </Card>
@@ -241,7 +241,7 @@ export default function Home() {
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="font-serif font-black text-3xl md:text-4xl mb-4">Ready to Start Your Journey?</h2>
           <p className="text-lg mb-8 opacity-90">
-            Join hundreds of youth who've discovered the joy of programming with Django Campus
+            Join hundreds of women who've discovered the joy of programming with Django Girls Tanzania
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button size="lg" variant="secondary">
@@ -265,14 +265,14 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <img src="/Campus_crop.png" alt="Django Campus" className="h-10 w-20" />
+                <img src="/pycon-tanzania-logo.png" alt="PyCon Tanzania" className="h-10 w-10" />
                 <div>
-                  <h3 className="font-serif font-bold text-lg">Django Campus</h3>
-                  <p className="text-sm text-muted-foreground">Powered by Django</p>
+                  <h3 className="font-serif font-bold text-lg">Django Girls Tanzania</h3>
+                  <p className="text-sm text-muted-foreground">Powered by PyCon Tanzania</p>
                 </div>
               </div>
               <p className="text-muted-foreground mb-4">
-                Empowering youth to learn programming through free Django workshops across Tanzania.
+                Empowering women to learn programming through free Django workshops across Tanzania.
               </p>
               <div className="flex gap-4">
                 <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
@@ -299,7 +299,7 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="#workshops" className="hover:text-primary transition-colors">
+                  <a href="/workshops" className="hover:text-primary transition-colors">
                     Workshops
                   </a>
                 </li>
@@ -319,15 +319,15 @@ export default function Home() {
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li>juliusboakye@pythonghana.org</li>
-                <li>Accra, Ghana</li>
-                <li>+233 50 015 9892</li>
+                <li>hello@djangogirls.tz</li>
+                <li>Dar es Salaam, Tanzania</li>
+                <li>+255 XXX XXX XXX</li>
               </ul>
             </div>
           </div>
 
           <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-            <p>&copy; 2025 Django Campus. We are building a community of vibrant Django Developers.</p>
+            <p>&copy; 2025 Django Girls Tanzania. Part of the global Django Girls organization.</p>
           </div>
         </div>
       </footer>
