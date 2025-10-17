@@ -29,6 +29,7 @@ export interface Registration {
   will_attend_physical: boolean
   django_experience: 'Beginner' | 'Intermediate' | 'Advanced'  // Updated to match Django choices
   registration_date?: string
+  country: string
 }
 
 export interface CommunityMember {

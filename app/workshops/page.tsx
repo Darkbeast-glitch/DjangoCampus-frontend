@@ -23,6 +23,7 @@ import Header from "@/components/layouts/Header"
 import Footer from "@/components/layouts/Footer"
 import { workshopService } from "@/services/workshopService"
 import { Workshop, Registration } from "@/types/api"
+import { countries } from "@/lib/data"
 
 export default function WorkshopsPage() {
   const [workshops, setWorkshops] = useState<Workshop[]>([])
@@ -37,6 +38,7 @@ export default function WorkshopsPage() {
     full_name: "",
     email: "",
     phone_number: "",
+    country: "",
     experience_level: "Beginner",
     will_attend_physical: true,
     django_experience: "Beginner",
@@ -76,6 +78,7 @@ export default function WorkshopsPage() {
         user_name: formData.full_name,
         user_email: formData.email,
         phone_number: formData.phone_number,
+        country: formData.country,
         will_attend_physical: formData.will_attend_physical,
         django_experience: formData.django_experience as 'Beginner' | 'Intermediate' | 'Advanced',
       }
@@ -97,6 +100,7 @@ export default function WorkshopsPage() {
         full_name: "",
         email: "",
         phone_number: "",
+        country: "",
         experience_level: "Beginner",
         will_attend_physical: true,
         django_experience: "Beginner",
@@ -298,6 +302,25 @@ export default function WorkshopsPage() {
                               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, email: e.target.value })}
                               required
                             />
+                          </div>
+
+                          <div className="space-y-2">
+                            <Label htmlFor="country">Country</Label>
+                              <Select
+                                value={formData.country}
+                                onValueChange={(value: string) => setFormData((prev) => ({ ...prev, country: value }))}
+                              >
+                                <SelectTrigger className="w-full">
+                                  <SelectValue placeholder="Select your country" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {countries.map((country) => (
+                                    <SelectItem key={country} value={country}>
+                                      {country}
+                                    </SelectItem>
+                                  ))}
+                                </SelectContent>
+                              </Select>
                           </div>
 
                           <div className="space-y-2">
