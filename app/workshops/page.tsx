@@ -23,6 +23,7 @@ import Header from "@/components/layouts/Header"
 import Footer from "@/components/layouts/Footer"
 import { workshopService } from "@/services/workshopService"
 import { Workshop, Registration } from "@/types/api"
+import { countries } from "@/lib/data"
 
 export default function WorkshopsPage() {
   const [workshops, setWorkshops] = useState<Workshop[]>([])
@@ -37,6 +38,7 @@ export default function WorkshopsPage() {
     full_name: "",
     email: "",
     phone_number: "",
+    country: "",
     experience_level: "Beginner",
     will_attend_physical: true,
     django_experience: "Beginner",
@@ -76,6 +78,7 @@ export default function WorkshopsPage() {
         user_name: formData.full_name,
         user_email: formData.email,
         phone_number: formData.phone_number,
+        country: formData.country,
         will_attend_physical: formData.will_attend_physical,
         django_experience: formData.django_experience as 'Beginner' | 'Intermediate' | 'Advanced',
       }
@@ -97,6 +100,7 @@ export default function WorkshopsPage() {
         full_name: "",
         email: "",
         phone_number: "",
+        country: "",
         experience_level: "Beginner",
         will_attend_physical: true,
         django_experience: "Beginner",
@@ -147,14 +151,14 @@ export default function WorkshopsPage() {
       <Header />
 
       {/* Hero Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-card to-background">
+      <section className="py-12 sm:py-16 px-4 sm:px-8 bg-gradient-to-br from-card to-background">
         <div className="container mx-auto text-center max-w-4xl">
           <Badge className="mb-6 bg-secondary text-secondary-foreground">Free Django Workshops</Badge>
-          <h1 className="font-serif font-black text-4xl md:text-6xl text-foreground mb-6 leading-tight">
-            Upcoming
-            <br />
-            <span className="text-primary">Workshops</span>
-          </h1>
+            <h1 className="font-serif font-black text-3xl sm:text-5xl md:text-6xl text-foreground mb-6 leading-tight">
+              Upcoming
+              <br />
+              <span className="text-primary">Workshops</span>
+            </h1>
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
               Join our hands-on Django workshops designed for women of all skill levels. Learn, build, and connect with
               the global tech community.
@@ -171,7 +175,7 @@ export default function WorkshopsPage() {
               <p className="text-muted-foreground">Check back soon for upcoming workshops!</p>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {workshops.map((workshop: Workshop) => (
                 <Card
                   key={workshop.id}
@@ -261,7 +265,7 @@ export default function WorkshopsPage() {
                           {workshop.is_ended ? "Event Ended" : "Register Now"}
                         </Button>
                       </DialogTrigger>
-                      <DialogContent className="sm:max-w-md">
+                        <DialogContent className="w-[95%] sm:max-w-md md:max-w-lg max-h-[90vh] overflow-y-auto [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                         <DialogHeader>
                           <DialogTitle className="font-serif font-bold">Register for Workshop</DialogTitle>
                           <DialogDescription>
@@ -270,23 +274,25 @@ export default function WorkshopsPage() {
                           </DialogDescription>
                         </DialogHeader>
                         <form onSubmit={handleSubmit} className="space-y-4">
-                          <div className="space-y-2">
-                            <Label htmlFor="user_name">Full Name</Label>
-                            <Input
-                              id="user_name"
-                              value={formData.full_name}
-                              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, full_name: e.target.value })}
-                              required
-                            />
-                          </div>
-                          <div className="space-y-2">
-                            <Label htmlFor="user_phone">Phone Number</Label>
-                            <Input
-                              id="user_phone"
-                              value={formData.phone_number}
-                              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, phone_number: e.target.value })}
-                              required
-                            />
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="user_name">Full Name</Label>
+                              <Input
+                                id="user_name"
+                                value={formData.full_name}
+                                onChange={(e) => setFormData({ ...formData, full_name: e.target.value })}
+                                required
+                              />
+                            </div>
+                            <div className="space-y-2">
+                              <Label htmlFor="user_phone">Phone Number</Label>
+                              <Input
+                                id="user_phone"
+                                value={formData.phone_number}
+                                onChange={(e) => setFormData({ ...formData, phone_number: e.target.value })}
+                                required
+                              />
+                            </div>
                           </div>
 
                           <div className="space-y-2">
@@ -300,21 +306,42 @@ export default function WorkshopsPage() {
                             />
                           </div>
 
-                          <div className="space-y-2">
-                            <Label htmlFor="django_experience">Django Experience Level</Label>
-                            <Select
-                              value={formData.django_experience}
-                              onValueChange={(value: string) => setFormData({ ...formData, django_experience: value })}
-                            >
-                              <SelectTrigger>
-                                <SelectValue />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectItem value="Beginner">Beginner</SelectItem>
-                                <SelectItem value="Intermediate">Intermediate</SelectItem>
-                                <SelectItem value="Advanced">Advanced</SelectItem>
-                              </SelectContent>
-                            </Select>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="space-y-2">
+                              <Label htmlFor="country">Country</Label>
+                                <Select
+                                  value={formData.country}
+                                  onValueChange={(value: string) => setFormData((prev) => ({ ...prev, country: value }))}
+                                >
+                                  <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select your country" />
+                                  </SelectTrigger>
+                                  <SelectContent>
+                                    {countries.map((country) => (
+                                      <SelectItem key={country} value={country}>
+                                        {country}
+                                      </SelectItem>
+                                    ))}
+                                  </SelectContent>
+                                </Select>
+                            </div>
+
+                            <div className="space-y-2">
+                              <Label htmlFor="django_experience">Django Experience Level</Label>
+                              <Select
+                                value={formData.django_experience}
+                                onValueChange={(value: string) => setFormData({ ...formData, django_experience: value })}
+                              >
+                                <SelectTrigger>
+                                  <SelectValue />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  <SelectItem value="Beginner">Beginner</SelectItem>
+                                  <SelectItem value="Intermediate">Intermediate</SelectItem>
+                                  <SelectItem value="Advanced">Advanced</SelectItem>
+                                </SelectContent>
+                              </Select>
+                            </div>
                           </div>
 
                           <div className="flex items-center space-x-2">
