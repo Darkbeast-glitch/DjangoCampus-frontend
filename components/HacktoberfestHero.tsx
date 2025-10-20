@@ -49,10 +49,10 @@ export default function HacktoberfestHero() {
 
           {/* Main Heading with Enhanced Animations */}
           <div className="mb-8">
-            <h1 className="font-black text-5xl md:text-7xl lg:text-8xl text-white mb-4 leading-tight tracking-tight">
+            <h1 className="font-black text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl text-white mb-4 mt-4 leading-tight tracking-tight">
               <BlurText 
                 text="This October" 
-                className="text-white-400 block font-serif tracking-wider"
+                className="text-white-400 block font-serif tracking-wider whitespace-nowrap"
                 delay={0.3}
               />
               <div className="bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 bg-clip-text text-transparent font-serif">
