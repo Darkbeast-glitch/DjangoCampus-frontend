@@ -145,16 +145,88 @@ export default function WorkshopsPage() {
     setSearchQuery("")
   }
 
+  // Skeleton Card Component
+  const SkeletonCard = () => (
+    <Card className="border-border bg-card min-h-[420px] overflow-hidden">
+      <CardHeader className="pb-4">
+        {/* Image skeleton */}
+        <div className="w-full h-40 bg-muted rounded-md mb-4 animate-shimmer"></div>
+        
+        {/* Badge and registration count skeleton */}
+        <div className="flex items-center justify-between mb-3">
+          <div className="h-6 bg-muted rounded-full w-24 animate-shimmer"></div>
+          <div className="h-4 bg-muted rounded w-28 animate-shimmer"></div>
+        </div>
+        
+        {/* Title skeleton */}
+        <div className="space-y-2 mb-2">
+          <div className="h-6 bg-muted rounded w-3/4 animate-shimmer"></div>
+          <div className="h-6 bg-muted rounded w-1/2 animate-shimmer"></div>
+        </div>
+        
+        {/* Description skeleton */}
+        <div className="space-y-2 pt-2">
+          <div className="h-4 bg-muted rounded w-full animate-shimmer"></div>
+          <div className="h-4 bg-muted rounded w-5/6 animate-shimmer"></div>
+        </div>
+      </CardHeader>
+      
+      <CardContent className="space-y-3">
+        {/* Date skeleton */}
+        <div className="flex items-center gap-2">
+          <div className="h-5 w-5 bg-muted rounded animate-shimmer"></div>
+          <div className="h-4 bg-muted rounded w-32 animate-shimmer"></div>
+        </div>
+        
+        {/* Time skeleton */}
+        <div className="flex items-center gap-2">
+          <div className="h-5 w-5 bg-muted rounded animate-shimmer"></div>
+          <div className="h-4 bg-muted rounded w-24 animate-shimmer"></div>
+        </div>
+        
+        {/* Location skeleton */}
+        <div className="flex items-center gap-2">
+          <div className="h-5 w-5 bg-muted rounded animate-shimmer"></div>
+          <div className="h-4 bg-muted rounded w-40 animate-shimmer"></div>
+        </div>
+        
+        {/* Button skeleton */}
+        <div className="h-10 bg-muted rounded-md w-full mt-4 animate-shimmer"></div>
+      </CardContent>
+    </Card>
+  )
+
   if (loading) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
-        <div className="flex items-center justify-center py-20">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-4 text-muted-foreground">Loading workshops...</p>
+        
+        {/* Hero Section Skeleton */}
+        <section className="py-16 px-4 bg-gradient-to-br from-card to-background">
+          <div className="container mx-auto text-center max-w-4xl">
+            <div className="h-8 bg-muted rounded-full w-48 mx-auto mb-6 animate-pulse"></div>
+            <div className="space-y-4 mb-6">
+              <div className="h-12 bg-muted rounded w-3/4 mx-auto animate-pulse"></div>
+              <div className="h-12 bg-muted rounded w-1/2 mx-auto animate-pulse"></div>
+            </div>
+            <div className="space-y-2 mb-8">
+              <div className="h-4 bg-muted rounded w-2/3 mx-auto animate-pulse"></div>
+              <div className="h-4 bg-muted rounded w-1/2 mx-auto animate-pulse"></div>
+            </div>
           </div>
-        </div>
+        </section>
+        
+        {/* Skeleton Cards Grid */}
+        <section className="py-16 px-4">
+          <div className="container mx-auto max-w-7xl">
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8">
+              <SkeletonCard />
+              <SkeletonCard />
+              <SkeletonCard />
+            </div>
+          </div>
+        </section>
+        
         <Footer />
       </div>
     )
