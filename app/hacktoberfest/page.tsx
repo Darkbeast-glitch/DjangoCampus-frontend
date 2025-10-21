@@ -362,51 +362,61 @@ export default function HacktoberfestPage() {
           </TextReveal>
 
           <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#FF6B35] via-[#FF8E3C] to-[#D9376E]"></div>
+            {/* Timeline Line - Responsive positioning */}
+            <div className="absolute left-4 md:left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#FF6B35] via-[#FF8E3C] to-[#D9376E]"></div>
 
-            <div className="space-y-8">
+            <div className="space-y-8 md:space-y-12">
               {timeline.map((event, index) => (
                 <TextReveal key={index} delay={0.1 * index}>
-                  <div className="relative flex items-start">
-                    {/* Timeline Dot */}
-                    <div className={`relative z-10 flex items-center justify-center w-16 h-16 rounded-full border-4 border-[#0D1117] ${
+                  <div className="relative">
+                    {/* Timeline Dot - Smaller on mobile, larger on desktop */}
+                    <div className={`absolute left-0 md:left-0 flex items-center justify-center w-8 h-8 md:w-16 md:h-16 rounded-full border-2 md:border-4 border-[#0D1117] ${
                       event.type === 'workshop' 
                         ? 'bg-gradient-to-r from-[#FF6B35] to-[#FF8E3C]' 
                         : 'bg-gradient-to-r from-[#D9376E] to-[#FF6B35]'
-                    }`}>
+                    } z-10`}>
                       {event.type === 'workshop' ? (
-                        <Code className="h-6 w-6 text-white" />
+                        <Code className="h-3 w-3 md:h-6 md:w-6 text-white" />
                       ) : (
-                        <Trophy className="h-6 w-6 text-white" />
+                        <Trophy className="h-3 w-3 md:h-6 md:w-6 text-white" />
                       )}
                     </div>
 
-                    {/* Event Content */}
-                    <HoverLiftCard className="ml-8 flex-1 p-6 bg-gradient-to-br from-[#161B22] to-[#0D1117] border border-[#FF8E3C]/20 rounded-lg">
-                      <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                        <div>
-                          <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
-                          <div className="flex items-center gap-4 text-sm text-gray-400">
-                            <span className="flex items-center gap-1">
-                              <Calendar className="h-4 w-4" />
-                              {event.date}
-                            </span>
-                            <span className="flex items-center gap-1">
-                              <Clock className="h-4 w-4" />
-                              {event.time}
-                            </span>
-                          </div>
-                        </div>
-                        <Badge className={`${
-                          event.type === 'workshop' 
-                            ? 'bg-[#FF8E3C] text-white' 
-                            : 'bg-[#D9376E] text-white'
-                        } px-3 py-1`}>
-                          {event.type === 'workshop' ? 'Workshop' : 'Celebration'}
-                        </Badge>
+                    {/* Date Badge - Prominent and outside card */}
+                    <div className="ml-12 md:ml-20 mb-3">
+                      <div className="inline-block bg-gradient-to-r from-[#FF6B35] to-[#FF8E3C] text-white px-3 py-1.5 md:px-4 md:py-2 rounded-full text-sm md:text-base font-bold shadow-lg">
+                        📅 {event.date}
                       </div>
-                      <p className="text-gray-300 leading-relaxed">{event.description}</p>
+                    </div>
+
+                    {/* Event Content Card */}
+                    <HoverLiftCard className="ml-12 md:ml-20 p-4 md:p-6 bg-gradient-to-br from-[#161B22] to-[#0D1117] border border-[#FF8E3C]/20 rounded-lg">
+                      <div className="flex flex-col gap-3 md:gap-4">
+                        {/* Title and Badge */}
+                        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+                          <h3 className="text-lg md:text-xl font-bold text-white leading-tight">
+                            {event.title}
+                          </h3>
+                          <Badge className={`${
+                            event.type === 'workshop' 
+                              ? 'bg-[#FF8E3C] text-white' 
+                              : 'bg-[#D9376E] text-white'
+                          } px-2 py-1 text-xs md:text-sm whitespace-nowrap self-start`}>
+                            {event.type === 'workshop' ? '🎓 Workshop' : '🎉 Celebration'}
+                          </Badge>
+                        </div>
+
+                        {/* Time Info */}
+                        <div className="flex items-center gap-2 text-xs md:text-sm text-gray-400">
+                          <Clock className="h-3 w-3 md:h-4 md:w-4" />
+                          <span>{event.time}</span>
+                        </div>
+
+                        {/* Description */}
+                        <p className="text-sm md:text-base text-gray-300 leading-relaxed">
+                          {event.description}
+                        </p>
+                      </div>
                     </HoverLiftCard>
                   </div>
                 </TextReveal>
