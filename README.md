@@ -15,7 +15,8 @@ Follow these steps to run the project locally:
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/DidasMba/DjangoCampus-frontend.git
+git clone https://github.com/Darkbeast-glitch/DjangoCampus-frontend.git
+
 cd DjangoCampus-frontend
 
 # 2. Install dependencies
