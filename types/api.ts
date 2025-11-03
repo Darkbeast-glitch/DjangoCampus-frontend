@@ -25,7 +25,8 @@ export interface Registration {
   workshop_time?: string
   user_name: string
   user_email: string
-  phone_number: string  // Made required since your form requires it
+  phone_number: string
+  country: string              // ← NEW FIELD
   will_attend_physical: boolean
   django_experience: 'Beginner' | 'Intermediate' | 'Advanced'  // Updated to match Django choices
   registration_date?: string
