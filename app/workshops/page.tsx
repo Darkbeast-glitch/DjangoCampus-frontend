@@ -539,39 +539,70 @@ export default function WorkshopsPage() {
                       <DialogContent className="sm:max-w-md">
                         <DialogHeader>
                           <DialogTitle className="font-serif font-bold">Register for Workshop</DialogTitle>
-                          <DialogDescription>
+                          <DialogDescription id="workshop-description">
                             {workshop.workshop_name} - {formatDate(workshop.workshop_date)}
                             {workshop.workshop_time && ` at ${workshop.workshop_time}`}
                           </DialogDescription>
                         </DialogHeader>
-                        <form onSubmit={handleSubmit} className="space-y-4">
+                        <form 
+                          onSubmit={handleSubmit} 
+                          className="space-y-4"
+                          aria-describedby="workshop-description"
+                          noValidate
+                        >
                           <div className="space-y-2">
-                            <Label htmlFor="user_name">Full Name</Label>
+                            <Label htmlFor="user_name">
+                              Full Name <span className="text-destructive" aria-label="required">*</span>
+                            </Label>
                             <Input
                               id="user_name"
+                              name="full_name"
+                              type="text"
                               value={formData.full_name}
                               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, full_name: e.target.value })}
                               required
+                              aria-required="true"
+                              aria-invalid={formData.full_name.trim() === '' ? 'true' : 'false'}
+                              autoComplete="name"
+                              placeholder="Enter your full name"
+                              className="focus:ring-2 focus:ring-primary focus:ring-offset-2"
                             />
                           </div>
                           <div className="space-y-2">
-                            <Label htmlFor="user_phone">Phone Number</Label>
+                            <Label htmlFor="user_phone">
+                              Phone Number <span className="text-destructive" aria-label="required">*</span>
+                            </Label>
                             <Input
                               id="user_phone"
+                              name="phone_number"
+                              type="tel"
                               value={formData.phone_number}
                               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, phone_number: e.target.value })}
                               required
+                              aria-required="true"
+                              aria-invalid={formData.phone_number.trim() === '' ? 'true' : 'false'}
+                              autoComplete="tel"
+                              placeholder="Enter your phone number"
+                              className="focus:ring-2 focus:ring-primary focus:ring-offset-2"
                             />
                           </div>
 
                           <div className="space-y-2">
-                            <Label htmlFor="user_email">Email Address</Label>
+                            <Label htmlFor="user_email">
+                              Email Address <span className="text-destructive" aria-label="required">*</span>
+                            </Label>
                             <Input
                               id="user_email"
+                              name="email"
                               type="email"
                               value={formData.email}
                               onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, email: e.target.value })}
                               required
+                              aria-required="true"
+                              aria-invalid={formData.email.trim() === '' ? 'true' : 'false'}
+                              autoComplete="email"
+                              placeholder="Enter your email address"
+                              className="focus:ring-2 focus:ring-primary focus:ring-offset-2"
                             />
                           </div>
                           {/* Country Field - Enhanced Searchable */}
@@ -648,13 +679,19 @@ export default function WorkshopsPage() {
                           </div>
 
                           <div className="space-y-2">
-                            <Label htmlFor="django_experience">Django Experience Level</Label>
+                            <Label htmlFor="django_experience">
+                              Django Experience Level
+                            </Label>
                             <Select
                               value={formData.django_experience}
                               onValueChange={(value: string) => setFormData({ ...formData, django_experience: value })}
                             >
-                              <SelectTrigger>
-                                <SelectValue />
+                              <SelectTrigger 
+                                id="django_experience"
+                                aria-label="Select your Django experience level"
+                                className="focus:ring-2 focus:ring-primary focus:ring-offset-2"
+                              >
+                                <SelectValue placeholder="Select your experience level" />
                               </SelectTrigger>
                               <SelectContent>
                                 <SelectItem value="Beginner">Beginner</SelectItem>
@@ -671,16 +708,23 @@ export default function WorkshopsPage() {
                               onCheckedChange={(checked: boolean) =>
                                 setFormData({ ...formData, will_attend_physical: checked })
                               }
+                              aria-describedby="attendance-description"
+                              className="focus:ring-2 focus:ring-primary focus:ring-offset-2"
                             />
-                            <Label htmlFor="will_attend_physical" className="text-sm">
+                            <Label 
+                              htmlFor="will_attend_physical" 
+                              className="text-sm cursor-pointer"
+                              id="attendance-description"
+                            >
                               I will attend the workshop physically
                             </Label>
                           </div>
 
                           <Button 
                             type="submit" 
-                            className="w-full bg-primary hover:bg-primary/90"
+                            className="w-full bg-primary hover:bg-primary/90 focus:ring-2 focus:ring-primary focus:ring-offset-2"
                             disabled={submitting}
+                            aria-label={submitting ? "Submitting registration" : "Complete registration"}
                           >
                             {submitting ? "Submitting..." : "Complete Registration"}
                           </Button>
