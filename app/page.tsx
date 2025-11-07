@@ -8,7 +8,7 @@ import { Users, Code, Heart, Calendar, MapPin, Mail, Github, Linkedin, Twitter, 
 import Link from "next/link"
 import Header from "@/components/layouts/Header"
 import Footer from "@/components/layouts/Footer"
-import HacktoberfestHero from "@/components/HacktoberfestHero"
+import Hero from "@/components/Hero"
 import HoverLiftCard from "@/components/HoverLiftCard"
 import TextReveal from "@/components/TextReveal"
 import FloatingButton from "@/components/FloatingButton"
@@ -236,8 +236,8 @@ Best regards`
       <Header />
 
       {/* Main Content */}
-      {/* Hacktoberfest Hero Section */}
-      <HacktoberfestHero />
+      {/* Hero Section */}
+      <Hero />
 
       {/* About Section */}
       <section id="about" className="py-16 px-4">
