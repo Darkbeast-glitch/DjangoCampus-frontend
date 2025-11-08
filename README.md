@@ -1,74 +1,53 @@
-# DjangoCampus
+# DjangoCampus 🚀
 
-DjangoCampus is a community-driven platform dedicated to empowering developers, students, and educators with resources, workshops, and events focused on Django and modern web development. Our mission is to foster learning, collaboration, and innovation within the Django ecosystem.
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-15-black.svg)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
+
+## About
+
+DjangoCampus is a community-driven platform dedicated to empowering women in tech with free Django workshops, resources, and events. Our mission is to foster learning, collaboration, and innovation while creating an inclusive space for developers across Africa and beyond.
 
 ## Features
 
-- **Interactive workshops and tutorials**
-- **Community events and meetups**
-- **Resources for beginners and advanced users**
-- **Networking opportunities** for Django enthusiasts
+- 🎓 Interactive workshops and tutorials
+- 📅 Community events and meetups
+- 📚 Resources for beginners and advanced users
+- 🤝 Networking opportunities for Django enthusiasts
+- 🎨 Beautiful, modern UI with smooth animations
+- 📱 Fully responsive design
 
-## Installation (Local Setup)
+## Tech Stack
 
-Follow these steps to run the project locally:
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** GSAP
+- **UI Components:** Shadcn/ui
+- **Package Manager:** pnpm
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/Darkbeast-glitch/DjangoCampus-frontend.git
+## Get Involved
 
-cd DjangoCampus-frontend
+Join our community to learn, share, and grow together. Whether you're just starting out or an experienced developer, DjangoCampus offers something for everyone.
 
-# 2. Install dependencies
-npm install   # or pnpm install
+**Connect with us:**
+- 💬 [WhatsApp Community](https://whatsapp.com/channel/0029VbB2boDEawdueVgsYC39)
+- 📸 [Instagram](https://www.instagram.com/djangocampus)
+- 💼 [LinkedIn](https://www.linkedin.com/company/djangocampus/)
+- 🐦 [Twitter/X](https://x.com/djangocampus)
 
-# 3. Run the development server
-npm run dev
-```
+## Contributing
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
-
-## 📂 Project Structure
-
-| Folder        | Description                                          |
-| ------------- | ---------------------------------------------------- |
-| `app/`        | Main pages and routes (Next.js App Router)           |
-| `components/` | Reusable UI components (Navbar, Footer, Cards, etc.) |
-| `lib/`        | Utilities and integrations (e.g., Google Analytics)  |
-| `services/`   | API calls and backend interactions                   |
-| `styles/`     | Global and component-level styles (Tailwind CSS)     |
-| `types/`      | TypeScript type definitions                          |
-
-## How to Contribute
-
-1. Fork the repository
-2. Create a branch for your contribution:
-
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. Make your changes
-4. Commit and push your branch:
-
-   ```bash
-   git add .
-   git commit -m "Improve documentation"
-   git push origin feature/your-feature-name
-   ```
-
-5. Open a Pull Request to the main repository
-
-**Tips:**
-
-- Focus on **clarity and completeness** in documentation
-- Add examples or screenshots if possible
-- Keep commits small and descriptive
+We welcome contributions! Check out our:
+- [Contributing Guidelines](CONTRIBUTING.md) - How to contribute to this project
+- [Code of Conduct](CODE_OF_CONDUCT.md) - Our community standards
+- [Open Issues](https://github.com/Darkbeast-glitch/learnDjWithJulius/issues) - Find ways to contribute
 
 ## License
 
-This project is open source and available under the **MIT License**.
+This project is open source and available under the MIT License.
 
-## 🌐 Live Site
+---
 
-Check out the live site: [djangocampus.tech](https://djangocampus.tech)
+Made with 💚 by the DjangoCampus team

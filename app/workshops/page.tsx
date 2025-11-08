@@ -36,6 +36,7 @@ export default function WorkshopsPage() {
   const [registeredWorkshopTime, setRegisteredWorkshopTime] = useState("")
   const [searchQuery, setSearchQuery] = useState("")
   const [countrySearch, setCountrySearch] = useState("")
+  const [expandedDescriptions, setExpandedDescriptions] = useState<{[key: number]: boolean}>({})
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -337,29 +338,20 @@ export default function WorkshopsPage() {
               {filteredWorkshops.map((workshop: Workshop, index: number) => (
                 <Card
                   key={workshop.id}
-                  className={`group relative border-0 bg-gradient-to-br from-card via-card to-card/50 hover:shadow-2xl hover:shadow-primary/20 transition-all duration-700 hover:-translate-y-3 overflow-hidden backdrop-blur-sm ${
+                  className={`group relative border border-border/50 hover:border-primary/30 bg-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden ${
                     workshop.is_ended ? 'opacity-60' : ''
                   }`}
-                  style={{
-                    animationDelay: `${index * 100}ms`,
-                  }}
                 >
-                  {/* Gradient Overlay Border Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                  
-                  {/* Animated Corner Accent */}
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary/10 to-transparent rounded-bl-full opacity-50 group-hover:scale-150 transition-transform duration-700" />
 
-                  {/* Image Header with Creative Overlay */}
+                  {/* Image Header */}
                   {workshop.workshop_image_header && (
-                    <div className="relative overflow-hidden h-52">
-                      {/* Gradient Overlay for better text readability */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
+                    <div className="relative overflow-hidden h-48">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
                       
                       <img
                         src={workshop.workshop_image_header}
                         alt={workshop.workshop_name}
-                        className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1 ${
+                        className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
                           workshop.is_ended ? 'grayscale' : ''
                         }`}
                       />
@@ -374,132 +366,128 @@ export default function WorkshopsPage() {
                         </div>
                       )}
                       
-                      {/* Creative Date Badge with Sparkle */}
+                      {/* Date Badge */}
                       {!workshop.is_ended && (() => {
                         const workshopDate = new Date(workshop.workshop_date);
                         return (
-                          <div className="absolute top-4 right-4 z-20 group/date">
-                            {/* Sparkle Effect */}
-                            <div className="absolute -top-1 -right-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                              <Sparkles className="h-4 w-4 text-yellow-400 animate-pulse" />
-                            </div>
-                            
-                            <div className="bg-gradient-to-br from-primary to-primary/80 text-white rounded-xl shadow-2xl p-3 text-center min-w-[75px] transform group-hover/date:scale-110 transition-transform duration-300">
-                              <div className="text-3xl font-black leading-none">
+                          <div className="absolute top-4 right-4 z-20">
+                            <div className="bg-primary text-white rounded-lg shadow-lg p-2.5 text-center min-w-[65px]">
+                              <div className="text-2xl font-bold leading-none">
                                 {workshopDate.getDate()}
                               </div>
-                              <div className="text-[10px] font-bold uppercase tracking-wider mt-1 opacity-90">
+                              <div className="text-xs font-medium uppercase mt-0.5">
                                 {workshopDate.toLocaleDateString('en-US', { month: 'short' })}
                               </div>
                             </div>
                           </div>
                         );
                       })()}
-
-                      {/* Status Badge Bottom Left */}
-                      <div className="absolute bottom-4 left-4 z-20 flex gap-2">
-                        <Badge className="bg-white/95 text-primary border-0 font-bold shadow-lg backdrop-blur-sm px-3 py-1">
-                          <Award className="h-3 w-3 mr-1" />
-                          Workshop
-                        </Badge>
-                      </div>
                     </div>
                   )}
 
-                  <CardHeader className="pb-4 pt-6 px-6 relative z-10">
-                    {/* Registration Count with Trending Icon */}
-                    <div className="flex items-center justify-between mb-4">
-                      <div className="flex items-center gap-2 bg-primary/5 rounded-full px-3 py-1.5 border border-primary/10">
-                        <TrendingUp className="h-4 w-4 text-primary animate-pulse" />
-                        <div className="flex items-center gap-1 text-sm">
-                          <span className="font-black text-primary text-lg">
-                            {getRegistrationsCount(workshop.registrations_count)}
-                          </span>
-                          <span className="text-muted-foreground text-xs font-medium">registered</span>
-                        </div>
+                  <CardHeader className="pb-3 pt-5 px-5">
+                    {/* Registration Count and Rating */}
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Users className="h-4 w-4" />
+                        <span className="font-semibold text-foreground">
+                          {getRegistrationsCount(workshop.registrations_count)}
+                        </span>
+                        <span>registered</span>
                       </div>
                       
-                      {/* Rating/Quality Indicator */}
                       {!workshop.is_ended && (
                         <div className="flex items-center gap-0.5" role="img" aria-label="5 out of 5 rating">
                           {[1, 2, 3, 4, 5].map((star) => (
-                            <Star key={star} className="h-3 w-3 fill-yellow-400 text-yellow-400" aria-hidden="true" />
+                            <Star key={star} className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400" aria-hidden="true" />
                           ))}
                         </div>
                       )}
                     </div>
 
-                    {/* Workshop Title with Gradient on Hover */}
-                    <CardTitle className="font-serif font-black text-2xl leading-tight mb-3 relative group/title">
-                      <span className={`${
-                        workshop.is_ended 
-                          ? 'text-muted-foreground' 
-                          : 'bg-gradient-to-r from-foreground to-foreground bg-clip-text group-hover/title:from-primary group-hover/title:to-secondary group-hover/title:text-transparent transition-all duration-500'
-                      }`}>
-                        {workshop.workshop_name}
-                      </span>
+                    {/* Workshop Title */}
+                    <CardTitle className="font-serif text-2xl leading-snug mb-3 group-hover:text-primary transition-colors duration-300">
+                      {workshop.workshop_name}
                     </CardTitle>
 
-                    {/* Description with Better Styling */}
-                    <CardDescription className="text-sm leading-relaxed text-muted-foreground line-clamp-2 mb-4 font-medium">
-                      {workshop.workshop_description || "Join us for an exciting Django workshop where you'll learn web development fundamentals and build real projects."}
-                    </CardDescription>
+                    {/* Description with Read More Toggle */}
+                    <div className="mb-4">
+                      {(() => {
+                        const description = workshop.workshop_description || "Join us for an exciting Django workshop where you'll learn web development fundamentals and build real projects.";
+                        const isExpanded = expandedDescriptions[workshop.id];
+                        const shouldShowToggle = description.length > 120;
+                        
+                        return (
+                          <>
+                            <CardDescription className="text-sm leading-relaxed text-muted-foreground">
+                              {shouldShowToggle && !isExpanded 
+                                ? `${description.substring(0, 120)}...` 
+                                : description
+                              }
+                            </CardDescription>
+                            {shouldShowToggle && (
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setExpandedDescriptions(prev => ({
+                                    ...prev,
+                                    [workshop.id]: !prev[workshop.id]
+                                  }));
+                                }}
+                                className="text-xs text-primary hover:text-primary/80 font-medium mt-2 inline-flex items-center gap-1 transition-colors"
+                              >
+                                {isExpanded ? 'Show less' : 'Read more'}
+                                <span className={`transform transition-transform ${isExpanded ? 'rotate-180' : ''}`}>↓</span>
+                              </button>
+                            )}
+                          </>
+                        );
+                      })()}
+                    </div>
                   </CardHeader>
 
-                  <CardContent className="pt-0 px-6 pb-6 relative z-10">
-                    {/* Workshop Details with Glass Morphism Effect */}
-                    <div className="relative rounded-xl overflow-hidden mb-6">
-                      {/* Glass morphism background */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background/50 to-secondary/5 backdrop-blur-sm" />
-                      
-                      <div className="relative space-y-3 p-4 border border-primary/10">
-                        {/* Date and Time Row */}
-                        <div className="flex items-start gap-3 group/item">
-                          <div className="relative">
-                            <div className="absolute inset-0 bg-primary/20 rounded-lg blur-sm group-hover/item:blur-md transition-all" />
-                            <div className="relative p-2.5 bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg">
-                              <Calendar className="h-4 w-4 text-primary" />
-                            </div>
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="text-sm font-bold text-foreground flex items-center gap-2">
-                              {formatDate(workshop.workshop_date)}
-                            </div>
-                            {workshop.workshop_time && (
-                              <div className="text-xs text-muted-foreground mt-1 flex items-center gap-1.5 font-medium">
-                                <Clock className="h-3.5 w-3.5" />
-                                <span>{workshop.workshop_time}</span>
-                              </div>
-                            )}
-                          </div>
+                  <CardContent className="pt-0 px-5 pb-5">
+                    {/* Workshop Details */}
+                    <div className="space-y-3 mb-5 p-4 bg-muted/30 rounded-lg border border-border/50">
+                      {/* Date and Time */}
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-primary/10 rounded-md">
+                          <Calendar className="h-4 w-4 text-primary" />
                         </div>
-
-                        {/* Divider */}
-                        <div className="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-
-                        {/* Location Row */}
-                        <div className="flex items-start gap-3 group/item">
-                          <div className="relative">
-                            <div className="absolute inset-0 bg-secondary/20 rounded-lg blur-sm group-hover/item:blur-md transition-all" />
-                            <div className="relative p-2.5 bg-gradient-to-br from-secondary/10 to-secondary/5 rounded-lg">
-                              <MapPin className="h-4 w-4 text-secondary" />
-                            </div>
+                        <div className="flex-1">
+                          <div className="text-sm font-semibold">
+                            {formatDate(workshop.workshop_date)}
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="text-sm font-bold text-foreground">
-                              {workshop.workshop_location}
+                          {workshop.workshop_time && (
+                            <div className="text-xs text-muted-foreground mt-0.5 flex items-center gap-1">
+                              <Clock className="h-3 w-3" />
+                              {workshop.workshop_time}
                             </div>
-                            {workshop.venue && (
-                              <div className="text-xs text-muted-foreground mt-1 font-medium">
-                                📍 {workshop.venue}
-                              </div>
-                            )}
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="h-px bg-border/50" />
+
+                      {/* Location */}
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-green-500/10 rounded-md">
+                          <MapPin className="h-4 w-4 text-green-600" />
+                        </div>
+                        <div className="flex-1">
+                          <div className="text-sm font-semibold">
+                            {workshop.workshop_location}
                           </div>
+                          {workshop.venue && (
+                            <div className="text-xs text-muted-foreground mt-0.5">
+                              {workshop.venue}
+                            </div>
+                          )}
                         </div>
                       </div>
                     </div>
 
-                    {/* Creative Call-to-Action Button with Animation */}
+                    {/* Register Button */}
                     <Dialog 
                       open={selectedWorkshop === workshop.id} 
                       onOpenChange={(open: boolean) => {
@@ -510,28 +498,20 @@ export default function WorkshopsPage() {
                     >
                       <DialogTrigger asChild>
                         <Button
-                          className={`relative w-full font-bold py-6 text-base transition-all duration-500 overflow-hidden group/btn ${
+                          className={`w-full font-semibold py-5 transition-all ${
                             workshop.is_ended 
                               ? 'bg-muted text-muted-foreground cursor-not-allowed' 
-                              : 'bg-gradient-to-r from-primary via-primary to-secondary hover:from-secondary hover:via-primary hover:to-primary text-primary-foreground shadow-lg hover:shadow-2xl hover:shadow-primary/40'
+                              : 'bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg'
                           }`}
                           onClick={() => handleRegister(workshop.id)}
                           disabled={workshop.is_ended}
                         >
-                          {/* Shine Effect */}
-                          {!workshop.is_ended && (
-                            <div className="absolute inset-0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-                          )}
-                          
                           {workshop.is_ended ? (
-                            <span className="flex items-center justify-center gap-2">
-                              Event Ended
-                            </span>
+                            'Event Ended'
                           ) : (
-                            <span className="relative flex items-center justify-center gap-2">
-                              <Sparkles className="h-5 w-5 group-hover/btn:rotate-12 transition-transform" />
-                              <span>Register Now</span>
-                              <ArrowLeft className="h-5 w-5 rotate-180 group-hover/btn:translate-x-2 transition-transform" />
+                            <span className="flex items-center justify-center gap-2">
+                              Register Now
+                              <ArrowLeft className="h-4 w-4 rotate-180" />
                             </span>
                           )}
                         </Button>

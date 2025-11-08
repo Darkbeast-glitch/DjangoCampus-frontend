@@ -2,14 +2,13 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Home, Info, Code, Flame, Play, Users, Heart } from "lucide-react"
+import { Menu, X, Home, Info, Code, Play, Users, Heart } from "lucide-react"
 import Link from "next/link"
 
 const navLinks = [
   { href: "/", label: "Home", icon: Home },
   { href: "/#about", label: "About", icon: Info },
   { href: "/workshops", label: "Workshops", icon: Code },
-  { href: "/hacktoberfest", label: "Hacktoberfest", icon: Flame, className: "text-orange-500 font-semibold" },
   { href: "/playground", label: "Playground", icon: Play },
   { href: "/#community", label: "Community", icon: Users },
   { href: "/partners", label: "Partners", icon: Heart },
@@ -46,11 +45,11 @@ function MobileNav({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }
           </Button>
         </div>
         <nav className="flex flex-col p-4 space-y-2 bg-white dark:bg-gray-900">
-          {navLinks.map(({ href, label, icon: Icon, className }) => (
+          {navLinks.map(({ href, label, icon: Icon }) => (
             <Link
               key={href}
               href={href}
-              className={`flex items-center gap-4 p-3 rounded-lg text-gray-900 dark:text-white hover:bg-primary/10 hover:text-primary active:bg-primary/20 transition-all duration-200 text-lg min-h-[48px] ${className || ''}`}
+              className="flex items-center gap-4 p-3 rounded-lg text-gray-900 dark:text-white hover:bg-primary/10 hover:text-primary active:bg-primary/20 transition-all duration-200 text-lg min-h-[48px]"
               onClick={onClose}
             >
               <Icon className="h-5 w-5 flex-shrink-0" />
@@ -86,11 +85,11 @@ export default function Header() {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          {navLinks.map(({ href, label, className }) => (
+          {navLinks.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className={`text-foreground hover:text-primary transition-colors ${className || ''}`}
+              className="text-foreground hover:text-primary transition-colors"
             >
               {label}
             </Link>
