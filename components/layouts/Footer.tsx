@@ -1,5 +1,6 @@
 import { MapPin, Mail, PhoneCall, Twitter, Facebook, Instagram, Linkedin } from "lucide-react"
 import Link from "next/link"
+import Webring from "@/components/Webring"
 
 
 export default function Footer() {
@@ -15,6 +16,9 @@ export default function Footer() {
 
   return (
     <footer className="py-12 px-4 bg-card border-t border-border">
+      <div className="mt-8 mb-4">
+          <Webring />
+      </div>
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
@@ -96,7 +100,6 @@ export default function Footer() {
             </ul>
           </div>
         </div>
-
         <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
           <p>&copy; 2025 Django Campus. We are building a community of vibrant Django Developers.</p>
         </div>
